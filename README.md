@@ -9,6 +9,6 @@ To get started
 - clone this repo and open the directory with an IDE
   - *. I highly recommend JetBrains RubyMine. Don't torture yourself with configuring vscode or vim for ruby on rail from scratch.
 
-# README
+# CUHK Second Hand Market in Ruby On Rails
 
 (Not even started writing yet. LMAO)
