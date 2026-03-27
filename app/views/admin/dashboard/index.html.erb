@@ -1,0 +1,54 @@
+<% content_for :title, "Admin Dashboard" %>
+
+<div class="w-full space-y-6">
+  <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900">Admin Dashboard</h1>
+      <p class="text-sm text-slate-600">Quick overview of market listing activity.</p>
+    </div>
+    <%= link_to "Manage Products", admin_products_path, class: "inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700" %>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Total listings</p>
+      <p class="mt-2 text-3xl font-bold text-slate-900"><%= @total_products %></p>
+    </div>
+    <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-wide text-emerald-700">Available</p>
+      <p class="mt-2 text-3xl font-bold text-emerald-800"><%= @available_products %></p>
+    </div>
+    <div class="rounded-xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-wide text-amber-700">Reserved</p>
+      <p class="mt-2 text-3xl font-bold text-amber-800"><%= @reserved_products %></p>
+    </div>
+    <div class="rounded-xl border border-slate-300 bg-slate-100 p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-wide text-slate-700">Sold</p>
+      <p class="mt-2 text-3xl font-bold text-slate-800"><%= @sold_products %></p>
+    </div>
+  </div>
+
+  <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div class="border-b border-slate-200 px-5 py-3">
+      <h2 class="text-sm font-semibold text-slate-800">Recent Listings</h2>
+    </div>
+    <ul class="divide-y divide-slate-100">
+      <% if @recent_products.any? %>
+        <% @recent_products.each do |product| %>
+          <li class="flex flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p class="font-semibold text-slate-900"><%= product.name %></p>
+              <p class="text-xs text-slate-500"><%= product.category.titleize %> - <%= product.post_date %></p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700"><%= product.state.titleize %></span>
+              <%= link_to "View", admin_product_path(product), class: "rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-700" %>
+            </div>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="px-5 py-8 text-center text-sm text-slate-500">No products have been posted yet.</li>
+      <% end %>
+    </ul>
+  </div>
+</div>

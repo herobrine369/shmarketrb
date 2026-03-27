@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
-  category: MyString
-  state: MyString
-  condition: MyString
+  name: Desk Lamp
+  description: Study lamp in good condition
+  category: electronics
+  state: available
+  condition: good
   price: 9.99
   post_date: 2026-03-23
 
 two:
-  name: MyString
-  description: MyString
-  category: MyString
-  state: MyString
-  condition: MyString
-  price: 9.99
+  name: Textbook Bundle
+  description: UGFN textbook package
+  category: textbook
+  state: reserved
+  condition: like new
+  price: 120.00
   post_date: 2026-03-23
