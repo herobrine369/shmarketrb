@@ -2,6 +2,4 @@
 # CVEs that are not relevant to the application can be enumerated on the ignore list below.
 
 ignore:
-  - CVE-2026-33658
-  - CVE-2026-33210
-  - GHSA-46fp-8f5p-pf2m
+  - CVE-THAT-DOES-NOT-APPLY
