@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  STATES = %w[available reserved sold].freeze
+  STATES = %w[available reserved sold].freeze # restrict states to avilable/reserved/sold
 
   before_validation :normalize_text_attributes
   before_validation :set_default_state
@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   validates :name, :category, :condition, :post_date, presence: true
   validates :description, length: { maximum: 1000 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :state, inclusion: { in: STATES }
+  validates :state, inclusion: { in: STATES } #check if status is available/reserved/sold
 
   scope :search, ->(query) {
     next all if query.blank?

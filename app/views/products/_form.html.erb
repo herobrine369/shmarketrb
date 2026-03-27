@@ -27,9 +27,19 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :state %>
-    <%= form.text_field :state, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product.errors[:state].none?, "border-red-400 focus:outline-red-600": product.errors[:state].any?}] %>
-  </div>
+  <%= form.label :state %>
+  <!-- to create a drop down menu-->
+  <!--options_for_select to create dropdown ooptinos -->
+  <!--prmopt to show hint before any states is picked -->
+  <%= form.select :state,
+                  options_for_select( 
+                    [["Available", "available"],["Reserved", "reserved"], ["Sold", "sold"]],product.state
+                  ),
+                  { prompt: "Select a state" },
+                  class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
+                          {"border-gray-400 focus:outline-blue-600": product.errors[:state].none?,
+                           "border-red-400 focus:outline-red-600": product.errors[:state].any?}] %>
+</div>
 
   <div class="my-5">
     <%= form.label :condition %>
