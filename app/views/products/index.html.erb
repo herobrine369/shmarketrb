@@ -6,10 +6,26 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Products</h1>
+    <h2 class="font-bold text-4xl">Products</h2>
     <%= link_to "New product", new_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
+
+<!-- add a list of category to select -->
+<div class="flex flex-wrap gap-2 mt-8 mb-6">
+  <%= link_to "All", products_path, class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category].blank? ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Furniture", products_path(category: "furniture"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'furniture' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Electrical appliances", products_path(category: "electrical appliance"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'electronics' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Books", products_path(category: "books"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'books' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Clothes", products_path(category: "clothes"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'clothes' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Tickets", products_path(category: "tickets"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'tickets' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Service", products_path(category: "service"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'service' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Sports gear", products_path(category: "sports gear"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'sports gear' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+  <%= link_to "Others", products_path(category: "others"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'others' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
+
+</div>
+
+<!-- product page-->
   <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
 
     <% if @products.any? %>
