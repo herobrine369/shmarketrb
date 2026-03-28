@@ -5,6 +5,12 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
+    #for search function
+    if params[:search].present?
+      @products = @products.search(params[:search])
+    end
+
+    #for filter
     if params[:category].present?
       @products = @products.where(category: params[:category])
     end

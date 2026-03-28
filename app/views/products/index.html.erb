@@ -1,4 +1,4 @@
-<% content_for :title, "Products" %>
+<% content_for :title, "Broswe everything" %>
 
 <div class="w-full">
   <% if notice.present? %>
@@ -11,6 +11,17 @@
   </div>
 
 
+
+<!-- search-->
+<div class="mt-8 mb-6">
+    <%= form_with url: products_path, method: :get, class: "flex gap-3" do |form| %>
+      <div class="flex-1 relative">
+        <%= form.text_field :search, placeholder: "Search whatever you like", value: params[:search], class: "block w-full rounded-2xl border border-gray-300 px-5 py-3 text-base focus:border-blue-600 focus:ring-blue-600" %>
+      </div>
+      <%= form.submit "Search", class: "px-8 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-medium" %>
+    <% end %>
+</div>
+
 <!-- add a list of category to select -->
 <div class="flex flex-wrap gap-2 mt-8 mb-6">
   <%= link_to "All", products_path, class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category].blank? ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
@@ -22,7 +33,6 @@
   <%= link_to "Service", products_path(category: "service"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'service' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
   <%= link_to "Sports gear", products_path(category: "sports gear"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'sports gear' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
   <%= link_to "Others", products_path(category: "others"), class: "px-5 py-2.5 rounded-2xl font-medium text-sm #{params[:category] == 'others' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}" %>
-
 </div>
 
 <!-- product page-->
