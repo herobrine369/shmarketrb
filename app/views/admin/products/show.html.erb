@@ -1,0 +1,60 @@
+<% content_for :title, "Admin | #{@product.name}" %>
+
+<div class="w-full space-y-6">
+  <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900">Product Detail (Admin)</h1>
+      <p class="text-sm text-slate-600">Review listing details and update moderation status.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <%= link_to "Admin List", admin_products_path, class: "rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100" %>
+      <%= link_to "Public View", product_path(@product), class: "rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700" %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+    <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-2">
+      <h2 class="mb-4 text-lg font-semibold text-slate-900"><%= @product.name %></h2>
+      <dl class="grid grid-cols-1 gap-3 text-sm text-slate-700 sm:grid-cols-2">
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-slate-500">Category</dt>
+          <dd class="mt-1 font-medium text-slate-900"><%= @product.category.titleize %></dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-slate-500">Condition</dt>
+          <dd class="mt-1 font-medium text-slate-900"><%= @product.condition.titleize %></dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-slate-500">Price</dt>
+          <dd class="mt-1 font-medium text-slate-900">HK$ <%= @product.price %></dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-slate-500">Post date</dt>
+          <dd class="mt-1 font-medium text-slate-900"><%= @product.post_date %></dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-slate-500">Created at</dt>
+          <dd class="mt-1 font-medium text-slate-900"><%= l(@product.created_at, format: :short) %></dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-slate-500">Updated at</dt>
+          <dd class="mt-1 font-medium text-slate-900"><%= l(@product.updated_at, format: :short) %></dd>
+        </div>
+      </dl>
+      <div class="mt-5 rounded-lg bg-slate-50 p-4">
+        <p class="text-xs uppercase tracking-wide text-slate-500">Description</p>
+        <p class="mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-700"><%= @product.description.presence || "No description" %></p>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <p class="text-sm font-semibold text-slate-800">Status Management</p>
+      <p class="mt-1 text-xs text-slate-500">Current: <span class="font-semibold text-slate-700"><%= @product.state.titleize %></span></p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <% Product::STATES.each do |state| %>
+          <%= button_to state.titleize, update_status_admin_product_path(@product, state: state), method: :patch, class: "rounded-md border px-3 py-1.5 text-xs font-medium #{state == @product.state ? "border-sky-300 bg-sky-100 text-sky-700" : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"}" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

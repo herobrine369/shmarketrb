@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+admin_email = ENV.fetch("ADMIN_EMAIL", "admin@cuhk.edu.hk")
+admin_password = ENV.fetch("ADMIN_PASSWORD", "password123")
+
+User.find_or_initialize_by(email: admin_email).tap do |user|
+  user.password = admin_password if user.new_record?
+  user.admin = true
+  user.save!
+end
