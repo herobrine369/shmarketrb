@@ -3,7 +3,6 @@ class Product < ApplicationRecord
 
   before_validation :normalize_text_attributes
   before_validation :set_default_post_date
-  
 
   validates :name, :category, :condition, :post_date, presence: true
   validates :description, length: { maximum: 1000 }
