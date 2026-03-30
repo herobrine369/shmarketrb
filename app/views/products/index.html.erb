@@ -1,4 +1,4 @@
-<% content_for :title, "Broswe everything" %>
+<% content_for :title, "Product" %>
 
 <div class="w-full">
   <% if notice.present? %>
@@ -6,12 +6,10 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h2 class="font-bold text-4xl">Products</h2>
+    <h2 class="font-bold text-4xl">Broswe Everything go go goooo~~</h2>
     <%= link_to "New product", new_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
-
-
-
+  
 <!-- search-->
 <div class="mt-8 mb-6">
     <%= form_with url: products_path, method: :get, class: "flex gap-3" do |form| %>
