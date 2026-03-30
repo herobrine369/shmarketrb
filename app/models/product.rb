@@ -9,6 +9,8 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :state, inclusion: { in: STATES } # check if status is available/reserved/sold
 
+  belongs_to :user
+
   scope :search, ->(query) {
     next all if query.blank?
 
