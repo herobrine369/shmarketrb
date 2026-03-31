@@ -30,6 +30,10 @@
         <div class="flex items-center gap-6">
           <%= link_to "CUHK Marketplace", root_path, class: "text-base font-bold text-slate-900" %>
           <%= link_to "Products", products_path, class: "text-sm font-medium text-slate-600 hover:text-slate-900" %>
+          <% if user_signed_in? %>
+            <%= link_to "Profile", profile_path, class: "text-sm font-medium text-slate-600 hover:text-slate-900" %>
+          <% end %>
+
           <% if user_signed_in? && current_user.admin? %>
             <%= link_to "Admin Dashboard", admin_dashboard_path, class: "text-sm font-medium text-slate-600 hover:text-slate-900" %>
             <%= link_to "Admin Products", admin_products_path, class: "text-sm font-medium text-slate-600 hover:text-slate-900" %>
