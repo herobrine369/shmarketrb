@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :products
+  resource :profile, only: [ :show ]
   devise_for :users
   namespace :admin do
     root "dashboard#index"
