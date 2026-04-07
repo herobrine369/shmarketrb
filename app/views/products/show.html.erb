@@ -1,12 +1,21 @@
-<% content_for :title, "Showing product" %>
-
 <div class="md:w-2/3 w-full">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Showing product</h1>
+  <h1 class="font-bold text-4xl"><%= @product.name %></h1>
 
+  <div class="flex justify-center mt-6">
+    <% if @product.image.attached? %>
+      <%= image_tag @product.image, 
+                    class: "max-w-full rounded-3xl shadow-lg", 
+                    alt: @product.name %>
+    <% else %>
+      <div class="max-w-full w-[700px] aspect-video bg-gray-100 rounded-3xl flex items-center justify-center text-gray-400 text-xl font-medium">
+        No image uploaded
+      </div>
+    <% end %>
+  </div>
   <%= render @product %>
 
   <%= link_to "Edit this product", edit_product_path(@product), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
