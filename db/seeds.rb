@@ -14,5 +14,6 @@ admin_password = ENV.fetch("ADMIN_PASSWORD", "password123")
 User.find_or_initialize_by(email: admin_email).tap do |user|
   user.password = admin_password if user.new_record?
   user.admin = true
+  user.username = "admin"
   user.save!
 end
