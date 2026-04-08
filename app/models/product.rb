@@ -11,6 +11,9 @@ class Product < ApplicationRecord
 
   belongs_to :user
 
+  # for active storage
+  has_one_attached :image
+
   scope :search, ->(query) {
     next all if query.blank?
 

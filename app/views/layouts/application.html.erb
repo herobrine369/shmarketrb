@@ -37,7 +37,8 @@
         </div>
         <div class="flex items-center gap-2">
           <% if user_signed_in? %>
-            <span class="hidden text-sm text-slate-500 sm:inline"><%= current_user.email %></span>
+            <!-- now should display username instead of email-->
+            <span class="hidden text-sm text-slate-500 sm:inline"><%= current_user.username %></span>
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100" %>
           <% else %>
             <%= link_to "Sign in", new_user_session_path, class: "rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-slate-700" %>
