@@ -1,0 +1,40 @@
+<div class="flex h-screen flex-col"
+     data-controller="conversation-subscription"
+     data-conversation-subscription-conversation-id-value="<%= @conversation.id %>"
+     data-conversation-subscription-current-user-id-value="<%= current_user.id %>">   <!-- ←←← ADD THIS LINE -->
+
+  <!-- Header -->
+  <div class="bg-white border-b p-4 flex items-center gap-3">
+    <%= image_tag @other_user.avatar_url || "default_avatar.png", class: "w-10 h-10 rounded-full" if @other_user.respond_to?(:avatar_url) %>
+    <div>
+      <h1 class="font-semibold text-lg"><%= @other_user.email %></h1>
+      <p class="text-sm text-gray-500">Online</p>
+    </div>
+  </div>
+
+  <!-- Messages area (scrollable) -->
+  <div id="messages"
+       data-conversation-subscription-target="messages"
+       class="flex-1 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-4">
+    <%= render @messages %>  <!-- renders messages/_message partials -->
+  </div>
+
+  <!-- Message input form -->
+  <!-- app/views/chats/show.html.erb -->
+  <%= form_with(model: [@conversation, @message],
+                data: {
+                  turbo: false,                    # prevents Turbo interference
+                  controller: "message-form",
+                  action: "message-form#submit"
+                },
+                class: "p-4 bg-white border-t flex gap-2") do |f| %>
+
+    <%= f.text_area :content,
+                    placeholder: "Type a message...",
+                    class: "flex-1 border border-gray-300 rounded-3xl px-5 py-3 focus:outline-none focus:border-blue-500 resize-none h-12",
+                    data: { message_form_target: "input" } %>
+
+    <%= f.submit "Send",
+                 class: "bg-blue-600 text-white px-8 rounded-3xl hover:bg-blue-700 transition" %>
+  <% end %>
+</div>
