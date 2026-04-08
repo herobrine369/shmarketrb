@@ -1,0 +1,12 @@
+<div class="<%= message.sender == current_user ? 'flex justify-end' : 'flex justify-start' %>"
+     data-sender-id="<%= message.sender.id %>">   <!-- ←←← ADD THIS LINE -->
+
+  <div class="<%= message.sender == current_user ?
+                    'bg-blue-600 text-white rounded-3xl rounded-tr-none px-5 py-3 max-w-xs' :
+                    'bg-white text-gray-800 rounded-3xl rounded-tl-none px-5 py-3 max-w-xs shadow-sm' %>">
+    <p class="text-sm"><%= message.content %></p>
+    <span class="text-xs opacity-70 block text-right mt-1">
+      <%= message.created_at.strftime("%H:%M") %>
+    </span>
+  </div>
+</div>
