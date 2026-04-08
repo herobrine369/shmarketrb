@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show] # only log in user can create, edit and destroy
+  before_action :correct_user, only: %i[ edit update destroy ] # only owner of this product can edit and destroy
+
 
   # GET /products or /products.json
   def index
@@ -37,7 +40,7 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-    @product.user = current_user
+    @product.user = current_user # to assign user
 
     respond_to do |format|
       if @product.save
@@ -82,5 +85,11 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def product_params
       params.expect(product: [ :image, :name, :description, :category, :state, :condition, :price, :post_date ])
+    end
+    # check if it's owner
+    def correct_user
+      unless @product.user == current_user
+        redirect_to @product, alert: "You are not authorized to do that."
+      end
     end
 end
