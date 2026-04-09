@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :sales, class_name: "Transaction", foreign_key: "seller_id"
   has_many :purchases, class_name: "Transaction", foreign_key: "buyer_id"
 
+  has_one_attached :avatar
+
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :college, presence: true
   validates :is_admin, inclusion: { in: [ true, false ] }
