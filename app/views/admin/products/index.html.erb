@@ -90,6 +90,7 @@
                       <%= button_to state.titleize, update_status_admin_product_path(product, state: state, query: @query, category: @category, min_price: @min_price, max_price: @max_price, sort: @sort, page: @page), method: :patch, class: "rounded-md border px-2.5 py-1 text-xs font-medium #{state == product.state ? "border-sky-300 bg-sky-100 text-sky-700" : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"}" %>
                     <% end %>
                     <%= link_to "Admin View", admin_product_path(product), class: "rounded-md bg-slate-900 px-2.5 py-1 text-xs font-medium text-white hover:bg-slate-700" %>
+                    <%= link_to "Edit", edit_admin_product_path(product), class: "rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50" %>
                     <%= button_to "Delete", admin_product_path(product, request.query_parameters.except("page")), method: :delete, data: { turbo_confirm: "Delete \"#{product.name}\"? This cannot be undone." }, class: "rounded-md border border-red-300 bg-red-50 px-2.5 py-1 text-xs font-medium text-red-700 hover:bg-red-100" %>
                   </div>
                 </td>
