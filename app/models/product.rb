@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  STATES = %w[available reserved sold].freeze # restrict states to avilable/reserved/sold
+  STATES = %w[draft available reserved sold].freeze # restrict states to draft/available/reserved/sold
 
   before_validation :normalize_text_attributes
   before_validation :set_default_post_date

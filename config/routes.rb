@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#index"
     get "dashboard", to: "dashboard#index"
-    resources :products, only: [ :index, :show ] do
+    resources :products, only: [ :index, :show, :destroy ] do
       patch :update_status, on: :member
     end
   end

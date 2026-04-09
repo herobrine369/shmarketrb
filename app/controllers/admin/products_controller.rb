@@ -9,7 +9,7 @@ module Admin
       "state" => { state: :asc, created_at: :desc }
     }.freeze
 
-    before_action :set_product, only: [ :show, :update_status ]
+    before_action :set_product, only: [ :show, :update_status, :destroy ]
 
     def index
       @query = params[:query].to_s.strip
@@ -38,6 +38,12 @@ module Admin
     end
 
     def show
+    end
+
+    def destroy
+      @product.destroy
+      redirect_to admin_products_path(request.query_parameters.except("id")),
+                  notice: "Product \"#{@product.name}\" has been deleted."
     end
 
     def update_status
