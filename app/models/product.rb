@@ -2,12 +2,13 @@ class Product < ApplicationRecord
   STATES = %w[draft available reserved sold].freeze # restrict states to draft/available/reserved/sold
 
   before_validation :normalize_text_attributes
+  before_validation :set_default_state
   before_validation :set_default_post_date
 
   validates :name, :category, :condition, :post_date, presence: true
   validates :description, length: { maximum: 1000 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :state, inclusion: { in: STATES } # check if status is available/reserved/sold
+  validates :state, presence: true, inclusion: { in: STATES } # check if status is draft/available/reserved/sold
 
   belongs_to :user
 
