@@ -8,25 +8,40 @@
     <!--strong class="block font-medium mb-1">Price:</strong-->
     HKD <%= product.price %>
   </h3>
-
-  <div>
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= product.description %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Category:</strong>
-    <%= product.category %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">State:</strong>
-    <%= product.state %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Condition:</strong>
-    <%= product.condition %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Post date:</strong>
-    <%= product.post_date %>
+  <!-- a thin line to seperate 2 parts-->
+  <div class="border-b border-gray-200 my-6"></div>   
+  <!-- for details -->
+  <div class="mt-2">
+    <h2 class="text-lg font-semibold text-gray-900 mb-6">Details</h2>
+    <!-- description-->
+    <% if @product.description.present? %>
+      <div class="prose text-gray-700 leading-relaxed mb-8">
+        Description:
+        <%= simple_format(@product.description) %>
+      </div>
+    <% end %>
+    <!-- create 2 column-->
+    <div class="grid grid-cols-2 gap-x-12 gap-y-6 text-sm">
+      <div class="space-y-5">
+        <div>
+          <p class="text-gray-500">Condition</p>
+          <p class="font-medium"><%= @product.condition %></p>
+        </div>
+        <div>
+          <p class="text-gray-500">Category</p>
+          <p class="font-medium"><%= @product.category %></p>
+        </div>
+      </div>
+      <div class="space-y-5">
+        <div>
+          <p class="text-gray-500">Status</p>
+          <p class="font-medium"><%= @product.state || "N/A" %></p>
+        </div>
+        <div>
+          <p class="text-gray-500">Post Date</p>
+          <p class="font-medium"><%= @product.post_date&.strftime("%d %b %Y") || "N/A" %></p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
