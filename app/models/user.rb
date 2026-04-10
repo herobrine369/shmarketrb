@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :college, presence: true
-  validates :is_admin, inclusion: { in: [ true, false ] }
+  validates :admin, inclusion: { in: [ true, false ] }
 
   def total_listings_count
     products.count
