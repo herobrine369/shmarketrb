@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index, :show] # only log in user can create, edit and destroy
+  before_action :authenticate_user!, except: [ :index, :show ] # only log in user can create, edit and destroy
   before_action :correct_user, only: %i[ edit update destroy ] # only owner of this product can edit and destroy
 
 
