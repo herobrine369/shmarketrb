@@ -11,6 +11,13 @@ Rails.application.routes.draw do
       patch :update_status, on: :member
     end
   end
+  # Chat endpoint exactly as requested
+  get "/chat/:user_id", to: "chats#show", as: :chat
+
+  # For sending messages (nested under conversation)
+  resources :conversations, only: [] do
+    resources :messages, only: [ :create ]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
