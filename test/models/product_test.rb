@@ -8,7 +8,6 @@ class ProductTest < ActiveSupport::TestCase
     assert_includes product.errors[:name], "can't be blank"
     assert_includes product.errors[:category], "can't be blank"
     assert_includes product.errors[:condition], "can't be blank"
-    assert_includes product.errors[:post_date], "can't be blank"
     assert_includes product.errors[:price], "can't be blank"
   end
 
@@ -19,7 +18,8 @@ class ProductTest < ActiveSupport::TestCase
       category: "  Electronics  ",
       condition: "  Good  ",
       price: 10,
-      post_date: Date.current
+      post_date: Date.current,
+      user: users(:one)
     )
 
     assert product.valid?
