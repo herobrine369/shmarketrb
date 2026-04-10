@@ -8,6 +8,7 @@ one:
   condition: good
   price: 9.99
   post_date: 2026-03-23
+  user: one
 
 two:
   name: Textbook Bundle
@@ -17,3 +18,4 @@ two:
   condition: like new
   price: 120.00
   post_date: 2026-03-23
+  user: two

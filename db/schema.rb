@@ -111,6 +111,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_09_102934) do
   create_table "users", force: :cascade do |t|
     t.boolean "admin", default: false, null: false
     t.string "college"
+    t.string "college"
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

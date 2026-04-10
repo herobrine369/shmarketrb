@@ -1,38 +1,56 @@
-<div class="md:w-2/3 w-full">
-  
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<% content_for :title, @product.name %>
+<!-- create a big grid, left side is content right side for request -->
+<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <div class="lg:col-span-8">
+    <%= link_to products_path, class: "inline-flex items-center gap-1 mb-6 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
+      <span class="text-lg leading-none">&lt;</span> Back
+    <% end %>
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <div class="flex justify-center mt-6">
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image, class: "max-w-3xl rounded-2xl shadow-lg", alt: @product.name %>
+      <% else %>
+        <div class="max-w-full w-[700px] aspect-video bg-gray-100 rounded-3xl flex items-center justify-center text-gray-400 text-xl font-medium">
+          No image
+        </div>
+      <% end %>
+    </div>
+    <p class="mt-10 text-sm text-gray-500">
+      Posted by <strong><%= @product.user.username %></strong> From <strong><%= @product.user.college %></strong>
+    </p>
 
-  <!--h1 class="font-bold text-4xl"><%= @product.name %></h1-->
+    <%= render @product %>
 
-  <%= link_to products_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 hover:bg-gray-50 inline-block font-medium" do %>
-    <span class="text-lg leading-none">&lt;</span>
-      Back
-  <% end %>
-
-  <div class="flex justify-center mt-6">
-    <% if @product.image.attached? %>
-      <%= image_tag @product.image, class: "max-w-3xl rounded-2xl shadow-lg", alt: @product.name %>
-    <% else %>
-      <div class="max-w-full w-[700px] aspect-video bg-gray-100 rounded-3xl flex items-center justify-center text-gray-400 text-xl font-medium">
-        No image
+    <!--check if signed in and if is owner -->
+    <% if user_signed_in? && @product.user == current_user %>
+      <div class="mt-10 flex flex-col sm:flex-row gap-3">
+        <%= link_to "Edit this product", edit_product_path(@product), class: "flex-1 text-center rounded-xl px-6 py-3.5 bg-gray-100 hover:bg-gray-200 font-medium text-base" %>
+        <%= button_to "Destroy this product", @product, method: :delete, form_class: "flex-1", class: "rounded-xl px-6 py-3.5 text-white bg-red-600 hover:bg-red-700 font-medium text-base cursor-pointer", data: { turbo_confirm: "Are you sure you want to delete this product?" } %>
       </div>
     <% end %>
+
   </div>
 
-  <p class="mt-6 text-sm text-gray-500">
-    Posted by <strong><%= @product.user.username || @product.user.email %></strong>
-  </p>
+<!-- right big grid-->
+  <div class="lg:col-span-4">
+    <div class="lg:sticky lg:top-8 mt-8 lg:mt-0">
+      <div class="bg-white border border-gray-200 rounded-3xl shadow-sm p-6">
 
-  <%= render @product %>
-  
- <!--check if user signed in and if it's owner-->
-  <% if user_signed_in? && @product.user == current_user %>
-    <div class="mt-10 flex flex-col sm:flex-row gap-3">
-      <%= link_to "Edit this product", edit_product_path(@product), class: "text-center rounded-xl px-6 py-3.5 bg-gray-100 hover:bg-gray-200 font-medium text-base" %>
-      <%= button_to "Destroy this product", @product, method: :delete, form_class: "flex-1",class: "rounded-xl px-6 py-3.5 text-white bg-red-600 hover:bg-red-700 font-medium text-base cursor-pointer", data: { turbo_confirm: "Are you sure you want to delete this product?" } %>
+        <h3 class="font-semibold text-xl mb-2">Interested in this item?</h3>
+        <p class="text-gray-600 mb-6">Chat with the seller directly to make a deal</p>
+
+        <!-- the button-->
+        <%= link_to chat_path(@product.user.id), class: "block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-2xl text-center text-lg transition-colors" do %>
+          Request
+        <% end %>
+
+        <p class="text-center text-xs text-gray-500 mt-4">
+          Message will be sent to <%= @product.user.username %>
+        </p>
+      </div>
     </div>
-  <% end %>
+  </div>
 
 </div>

@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :products, dependent: :destroy
-<<<<<<< HEAD
   has_many :sales, class_name: "Transaction", foreign_key: "seller_id"
   has_many :purchases, class_name: "Transaction", foreign_key: "buyer_id"
 
@@ -48,13 +47,5 @@ class User < ApplicationRecord
   private
   def normalize_college_name
     self.college = college.to_s.strip.titleize if college.present?
-=======
-  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy
-  has_many :conversations_as_user1, class_name: "Conversation", foreign_key: "user1_id"
-  has_many :conversations_as_user2, class_name: "Conversation", foreign_key: "user2_id"
-
-  def conversations
-    Conversation.where("user1_id = ? OR user2_id = ?", id, id)
->>>>>>> main
   end
 end

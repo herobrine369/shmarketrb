@@ -9,7 +9,7 @@ module Admin
       "state" => { state: :asc, created_at: :desc }
     }.freeze
 
-    before_action :set_product, only: [ :show, :update_status ]
+    before_action :set_product, only: [ :show, :edit, :update, :update_status, :destroy ]
 
     def index
       @query = params[:query].to_s.strip
@@ -40,6 +40,23 @@ module Admin
     def show
     end
 
+    def edit
+    end
+
+    def update
+      if @product.update(admin_product_params)
+        redirect_to admin_product_path(@product), notice: "Product updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @product.destroy
+      redirect_to admin_products_path(request.query_parameters.except("id")),
+                  notice: "Product \"#{@product.name}\" has been deleted."
+    end
+
     def update_status
       new_state = params.expect(:state).to_s.downcase
 
@@ -56,6 +73,10 @@ module Admin
 
     def set_product
       @product = Product.find(params.expect(:id))
+    end
+
+    def admin_product_params
+      params.expect(product: [ :name, :description, :category, :state, :condition, :price ])
     end
   end
 end
