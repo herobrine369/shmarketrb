@@ -1,27 +1,26 @@
 <!-- app/views/profiles/edit.html.erb -->
-<div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-lg p-10 mt-10">
-  <div class="flex justify-between items-center mb-8">
+<div class="max-w-[1600px] mx-auto mt-10 bg-white rounded-3xl shadow-xl p-10">
+  <div class="flex justify-between items-center mb-10">
+    <%= link_to "←", profile_path, class: "text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 text-lg" %>
     <h1 class="text-4xl font-bold">Edit Profile</h1>
-    <%= link_to "← Return to Profile", profile_path, 
-                class: "text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1" %>
   </div>
 
   <%= form_with model: @user, url: profile_path, method: :put, multipart: true do |f| %>
 
-    <!-- Profile Photo Upload -->
+    <!-- Profile Photo -->
     <div class="mb-10">
       <label class="block text-sm font-medium text-gray-700 mb-3">Profile Photo</label>
       <%= f.file_field :avatar, class: "block w-full text-sm text-gray-500 
-                     file:mr-4 file:py-3 file:px-6 file:rounded-2xl 
+                     file:mr-4 file:py-4 file:px-8 file:rounded-2xl 
                      file:border-0 file:text-sm file:font-medium 
                      file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
-      <p class="text-xs text-gray-500 mt-2">Recommended size: 400×400 px (JPG/PNG)</p>
+      <p class="text-xs text-gray-500 mt-2">Recommended: 400×400 px (JPG or PNG)</p>
     </div>
 
     <!-- Username -->
     <div class="mb-8">
       <%= f.label :username, "Username", class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= f.text_field :username, class: "w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500 text-lg" %>
+      <%= f.text_field :username, class: "w-full px-6 py-5 border border-gray-300 rounded-2xl text-lg focus:outline-none focus:border-blue-500" %>
     </div>
 
     <!-- College Dropdown -->
@@ -32,16 +31,16 @@
                     "Shaw College", "Morningside College", "S.H. Ho College", 
                     "CW Chu College", "Wu Yee Sun College", "Lee Woo Sing College"], 
                    { prompt: "Select your college" }, 
-                   class: "w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500 text-lg" %>
+                   class: "w-full px-6 py-5 border border-gray-300 rounded-2xl text-lg focus:outline-none focus:border-blue-500" %>
     </div>
 
     <!-- Buttons -->
     <div class="flex gap-4">
       <%= f.submit "Save Changes", 
-                   class: "flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl text-lg cursor-pointer transition" %>
+                   class: "flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-5 rounded-2xl text-xl cursor-pointer transition" %>
 
       <%= link_to "Cancel", profile_path, 
-                  class: "flex-1 border border-gray-300 hover:bg-gray-50 font-semibold py-4 rounded-2xl text-lg text-center transition" %>
+                  class: "flex-1 border border-gray-300 hover:bg-gray-50 font-semibold py-5 rounded-2xl text-xl text-center transition" %>
     </div>
 
   <% end %>
