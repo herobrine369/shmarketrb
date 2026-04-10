@@ -12,6 +12,8 @@ class Product < ApplicationRecord
 
   belongs_to :user
 
+  has_many :transactions
+
   # for active storage
   has_one_attached :image
 

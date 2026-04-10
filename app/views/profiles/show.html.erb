@@ -1,0 +1,29 @@
+<!-- app/views/profiles/show.html.erb -->
+<div class="max-w-4xl mx-auto mt-10">
+  <h1 class="text-4xl font-bold mb-8">My Profile</h1>
+
+  <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+    <div class="flex flex-col md:flex-row">
+      <!-- Avatar Section -->
+      <div class="bg-slate-50 p-10 flex flex-col items-center justify-center border-r border-slate-100">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar, class: "w-48 h-48 rounded-3xl object-cover shadow-lg" %>
+        <% else %>
+          <div class="w-48 h-48 bg-gray-200 rounded-3xl flex items-center justify-center text-8xl shadow-inner">👤</div>
+        <% end %>
+      </div>
+
+      <!-- Info Section -->
+      <div class="flex-1 p-10">
+        <h2 class="text-5xl font-semibold mb-2"><%= @user.username %></h2>
+        <p class="text-xl text-slate-600 mb-1">College: <%= @user.college %></p>
+        <p class="text-slate-500">Member since <%= @user.created_at.strftime("%B %Y") %></p>
+
+        <div class="mt-10">
+          <%= link_to "Edit Profile", edit_profile_path, 
+                      class: "inline-block bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-semibold text-lg transition" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

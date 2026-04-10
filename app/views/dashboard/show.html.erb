@@ -1,0 +1,88 @@
+<div class="container mx-auto p-8 max-w-6xl">
+  <h1 class="text-4xl font-bold text-gray-900 mb-2">
+    Welcome back, <%= current_user.username %>!
+  </h1>
+  <p class="text-gray-600 mb-10">Here's a quick overview of your marketplace activity.</p>
+
+  <!-- Statistics Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+    <div class="bg-white rounded-2xl shadow p-6">
+      <p class="text-sm text-gray-500">Total Listings</p>
+      <p class="text-5xl font-bold text-gray-900 mt-2"><%= @total_listings %></p>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-6 border border-green-200">
+      <p class="text-sm text-green-600">Active</p>
+      <p class="text-5xl font-bold text-green-600 mt-2"><%= @active_listings_count %></p>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-6 border border-orange-200">
+      <p class="text-sm text-orange-600">Reserved</p>
+      <p class="text-5xl font-bold text-orange-600 mt-2"><%= @reserved_count %></p>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-6 border border-red-200">
+      <p class="text-sm text-red-600">Sold</p>
+      <p class="text-5xl font-bold text-red-600 mt-2"><%= @sold_count %></p>
+    </div>
+  </div>
+
+  <!-- Listings Section -->
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-semibold">
+      <%= @show_all_listings ? "All My Listings" : "My Recent Listings" %>
+    </h2>
+    <%= link_to @show_all_listings ? "View Recent Listings" : "View All My Listings",
+                @show_all_listings ? dashboard_path : dashboard_path(listings: "all"),
+                class: "px-6 py-3 rounded-2xl font-medium transition " +
+                       (@show_all_listings ? "bg-gray-200 hover:bg-gray-300" : "bg-blue-600 hover:bg-blue-700 text-white") %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <% if @listings.any? %>
+      <% @listings.each do |product| %>
+        <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition">
+          <div class="flex justify-between items-start">
+            <h3 class="font-medium text-lg"><%= product.name %></h3>
+            <span class="px-3 py-1 text-xs font-medium rounded-full 
+                         <%= product.state == 'available' ? 'bg-green-100 text-green-700' : 
+                             product.state == 'reserved' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700' %>">
+              <%= product.state.capitalize %>
+            </span>
+          </div>
+          <p class="text-3xl font-bold text-gray-900 mt-4">HK$<%= product.price %></p>
+          <p class="text-sm text-gray-500 mt-1">Posted <%= product.post_date.strftime("%b %d, %Y") if product.post_date %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-gray-500 italic">You haven't posted any items yet.</p>
+    <% end %>
+  </div>
+
+  <!-- Purchases Section -->
+  <div class="flex items-center justify-between mt-16 mb-6">
+    <h2 class="text-2xl font-semibold">
+      <%= @show_all_purchases ? "All My Purchases" : "My Recent Purchases" %>
+    </h2>
+    <%= link_to @show_all_purchases ? "View Recent Purchases" : "View All My Purchases",
+                @show_all_purchases ? dashboard_path : dashboard_path(purchases: "all"),
+                class: "px-6 py-3 rounded-2xl font-medium transition " +
+                       (@show_all_purchases ? "bg-gray-200 hover:bg-gray-300" : "border border-gray-300 hover:bg-gray-50") %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <% if @purchases.any? %>
+      <% @purchases.each do |purchase| %>
+        <div class="bg-white border border-gray-200 rounded-2xl p-5">
+          <p class="font-medium"><%= purchase.product.name %></p>
+          <p class="text-3xl font-bold text-gray-900">HK$<%= purchase.product.price %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-gray-500 italic">You haven't made any purchases yet.</p>
+    <% end %>
+  </div>
+
+  <!-- Post New Item -->
+  <div class="flex gap-4 mt-12">
+    <%= link_to "Post New Item", new_product_path, 
+                class: "bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-medium text-lg flex-1 text-center" %>
+  </div>
+</div>
