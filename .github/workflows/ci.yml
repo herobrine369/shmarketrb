@@ -96,13 +96,29 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Run tests
+      - name: Run mini test
         env:
           RAILS_ENV: test
           Coverage: true
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test && bundle exec rspec && bundle exec cucumber
+        run: bin/rails db:test:prepare test
+
+      - name: Run rspec test
+        env:
+          RAILS_ENV: test
+          Coverage: true
+          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          # REDIS_URL: redis://localhost:6379/0
+        run: bin/rails db:test:prepare && bundle exec rspec
+
+      - name: Run cucumber
+        env:
+          RAILS_ENV: test
+          Coverage: true
+          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          # REDIS_URL: redis://localhost:6379/0
+        run: bin/rails db:test:prepare && bundle exec cucumber
 
   system-test:
     runs-on: ubuntu-latest
