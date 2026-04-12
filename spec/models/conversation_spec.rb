@@ -37,8 +37,8 @@ RSpec.describe Conversation, type: :model do
 
     it 'always puts the smaller ID in user1_id' do
       conversation = Conversation.find_or_create_between(user_b, user_a)
-      expect(conversation.user1_id).to eq([user_a.id, user_b.id].min)
-      expect(conversation.user2_id).to eq([user_a.id, user_b.id].max)
+      expect(conversation.user1_id).to eq([ user_a.id, user_b.id ].min)
+      expect(conversation.user2_id).to eq([ user_a.id, user_b.id ].max)
     end
 
     it 'returns nil if same user or nil' do

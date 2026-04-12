@@ -73,7 +73,7 @@ group :test do
   gem "selenium-webdriver"
   gem "cuprite"                # faster headless browser
 
-  gem 'simplecov', require: false
+  gem "simplecov", require: false
 end
 
 gem "foreman"

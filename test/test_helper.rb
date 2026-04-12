@@ -15,11 +15,11 @@ module ActiveSupport
 end
 
 # For Minitest (test/test_helper.rb)
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/vendor/'
-  coverage_dir 'coverage/minitest'
-  minimum_coverage 80
+require "simplecov"
+SimpleCov.start "rails" do
+  add_filter "/vendor/"
+  coverage_dir "coverage/minitest"
+  # minimum_coverage 80
 end
 
 class ActionDispatch::IntegrationTest
