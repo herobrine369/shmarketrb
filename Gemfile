@@ -54,7 +54,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails", "~> 7.0"
-  gem "cucumber-rails", "~> 3.1", require: false
+  gem "cucumber-rails", "~> 4.0", require: false
   gem "database_cleaner-active_record"
   gem "factory_bot_rails"
   gem "shoulda-matchers"
