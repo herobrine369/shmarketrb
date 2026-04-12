@@ -38,18 +38,20 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <% if @listings.any? %>
       <% @listings.each do |product| %>
-        <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition">
-          <div class="flex justify-between items-start">
-            <h3 class="font-medium text-lg"><%= product.name %></h3>
-            <span class="px-3 py-1 text-xs font-medium rounded-full 
-                         <%= product.state == 'available' ? 'bg-green-100 text-green-700' : 
-                             product.state == 'reserved' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700' %>">
-              <%= product.state.capitalize %>
-            </span>
+        <%= link_to product_path(product), class: "block group" do %>
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition group-hover:shadow-xl">
+            <div class="flex justify-between items-start">
+              <h3 class="font-medium text-lg"><%= product.name %></h3>
+              <span class="px-3 py-1 text-xs font-medium rounded-full 
+                           <%= product.state == 'available' ? 'bg-green-100 text-green-700' : 
+                               product.state == 'reserved' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700' %>">
+                <%= product.state.capitalize %>
+              </span>
+            </div>
+            <p class="text-3xl font-bold text-gray-900 mt-4">HK$<%= product.price %></p>
+            <p class="text-sm text-gray-500 mt-1">Posted <%= product.created_at.strftime("%b %d, %Y") if product.created_at %></p>
           </div>
-          <p class="text-3xl font-bold text-gray-900 mt-4">HK$<%= product.price %></p>
-          <p class="text-sm text-gray-500 mt-1">Posted <%= product.post_date.strftime("%b %d, %Y") if product.post_date %></p>
-        </div>
+        <% end %>
       <% end %>
     <% else %>
       <p class="text-gray-500 italic">You haven't posted any items yet.</p>
@@ -70,10 +72,12 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <% if @purchases.any? %>
       <% @purchases.each do |purchase| %>
-        <div class="bg-white border border-gray-200 rounded-2xl p-5">
-          <p class="font-medium"><%= purchase.product.name %></p>
-          <p class="text-3xl font-bold text-gray-900">HK$<%= purchase.product.price %></p>
-        </div>
+        <%= link_to product_path(purchase.product), class: "block group" do %>
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition group-hover:shadow-xl">
+            <p class="font-medium"><%= purchase.product.name %></p>
+            <p class="text-3xl font-bold text-gray-900">HK$<%= purchase.product.price %></p>
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <p class="text-gray-500 italic">You haven't made any purchases yet.</p>
@@ -82,7 +86,7 @@
 
   <!-- Post New Item -->
   <div class="flex gap-4 mt-12">
-    <%= link_to "Post New Item", new_product_path, 
+    <%= link_to "Post New Item", new_product_path,
                 class: "bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-medium text-lg flex-1 text-center" %>
   </div>
 </div>

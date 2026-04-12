@@ -34,6 +34,16 @@
                    class: "w-full px-6 py-5 border border-gray-300 rounded-2xl text-lg focus:outline-none focus:border-blue-500" %>
     </div>
 
+    <!-- Bio / Self Introduction -->
+<div class="mb-10">
+  <%= f.label :bio, "Bio / Self Introduction", class: "block text-sm font-medium text-gray-700 mb-2" %>
+  <%= f.text_area :bio, 
+       rows: 6,
+       class: "w-full px-6 py-5 border border-gray-300 rounded-2xl text-lg focus:outline-none focus:border-blue-500 resize-y",
+       placeholder: "Tell us about yourself..." %>
+  <p class="text-xs text-gray-500 mt-2">Max 500 characters recommended (new lines are preserved)</p>
+</div>
+
     <!-- Buttons -->
     <div class="flex gap-4">
       <%= f.submit "Save Changes", 

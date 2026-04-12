@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
 
     # Toggle Listings (Recent vs All)
     if params[:listings] == "all"
-      @listings = @user.products.order(post_date: :desc)
+      @listings = @user.products.order(created_at: :desc)
       @show_all_listings = true
     else
       @listings = @user.recent_listings(limit: 5)
