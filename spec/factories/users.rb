@@ -14,5 +14,5 @@ FactoryBot.define do
     end
   end
 
-  factory :admin, parent: :user, traits: [:admin]
+  factory :admin, parent: :user, traits: [ :admin ]
 end
