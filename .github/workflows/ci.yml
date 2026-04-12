@@ -118,7 +118,7 @@ jobs:
           Coverage: true
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare && bundle exec cucumber
+        run: COVERAGE:true bundle exec cucumber
 
   system-test:
     runs-on: ubuntu-latest
