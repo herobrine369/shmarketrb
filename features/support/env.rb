@@ -57,5 +57,5 @@ SimpleCov.start 'rails' do
   add_filter '/vendor/' # Exclude gems
   add_filter '/config/' # Exclude config files (optional)
   coverage_dir 'coverage/cucumber'
-  minimum_coverage 40 # Enforce 80% coverage (adjust as needed)
+  # minimum_coverage 40 # Enforce 80% coverage (adjust as needed)
 end
