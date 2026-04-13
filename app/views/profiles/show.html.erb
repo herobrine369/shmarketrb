@@ -13,17 +13,26 @@
         <% end %>
       </div>
 
-      <!-- Info Section -->
-      <div class="flex-1 p-10">
-        <h2 class="text-5xl font-semibold mb-2"><%= @user.username %></h2>
-        <p class="text-xl text-slate-600 mb-1">College: <%= @user.college %></p>
-        <p class="text-slate-500">Member since <%= @user.created_at.strftime("%B %Y") %></p>
+<!-- Info Section -->
+<div class="flex-1 p-10">
+  <h2 class="text-5xl font-semibold mb-2"><%= @user.username %></h2>
+  <p class="text-xl text-slate-600 mb-1">College: <%= @user.college %></p>
+  <p class="text-slate-500">Member since <%= @user.created_at.strftime("%B %Y") %></p>
 
-        <div class="mt-10">
-          <%= link_to "Edit Profile", edit_profile_path, 
-                      class: "inline-block bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-semibold text-lg transition" %>
-        </div>
-      </div>
+  <% if @user.bio.present? %>
+    <div class="mt-8 pt-1 border-t border-slate-700">
+      <h3 class="text-sm uppercase tracking-widest font-medium text-slate-500 mb-1">About Me</h3>
+      <p class="text-slate-500 leading-relaxed text-lg">
+        <%= @user.bio %>
+      </p>
+    </div>
+  <% end %>
+
+  <div class="mt-10">
+    <%= link_to "Edit Profile", edit_profile_path,
+      class: "inline-block bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-semibold text-lg transition" %>
+  </div>
+</div>
     </div>
   </div>
 </div>

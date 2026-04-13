@@ -35,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def recent_listings(limit: 5)
-    products.order(post_date: :desc).limit(limit)
+    products.order(created_at: :desc).limit(limit)
   end
 
   def recent_purchases(limit: 5)
@@ -45,6 +45,7 @@ class User < ApplicationRecord
   before_validation :normalize_college_name
 
   private
+
   def normalize_college_name
     self.college = college.to_s.strip.titleize if college.present?
   end
