@@ -11,4 +11,20 @@ To get started
 
 # CUHK Second Hand Market in Ruby On Rails
 
-(Not even started writing yet. LMAO)
+## Group members' information
+
+1155210173, Chan Ka Ho, herobrine369
+1155193090, Chung Wing Man, CarmenChung
+1155213372, Tsang Wan Tung, nicnicnicnicole
+1155212352, Wu Lap Ngai, MrAss1707
+
+## Group members' contribution
+
+| Feature Name   | Primary Developer | Secondary Developer | Notes |
+|----------------|-------------------|---------------------|-------|
+| Authentication |                   |                     |       |
+|                |                   |                     |       |
+|                |                   |                     |       |
+|                |                   |                     |       |
+|                |                   |                     |       |
+|                |                   |                     |       |
